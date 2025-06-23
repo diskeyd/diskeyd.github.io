@@ -1,68 +1,394 @@
+// ===== API 설정 =====
+// FastAPI 백엔드 서버 주소 (수업에서 배운 API 통신)
+const API_BASE_URL = "http://localhost:4000";
+
+// ===== API 호출 함수들 =====
+// 비동기 처리를 위해 async/await 사용 (수업에서 배운 기법)
+async function fetchProjects() {
+  try {
+    // Fetch API로 데이터 요청
+    const response = await fetch(`${API_BASE_URL}/api/projects`);
+    const data = await response.json();
+    return data.projects || [];
+  } catch (error) {
+    console.error("프로젝트 로드 실패:", error);
+    return [];
+  }
+}
+
+async function incrementView(projectId) {
+  try {
+    const response = await fetch(
+      `${API_BASE_URL}/api/projects/${projectId}/view`,
+      {
+        method: "POST",
+      }
+    );
+    const data = await response.json();
+    return data;
+  } catch (error) {
+    console.error("조회수 증가 실패:", error);
+    return null;
+  }
+}
+
+async function toggleLike(projectId) {
+  try {
+    const response = await fetch(
+      `${API_BASE_URL}/api/projects/${projectId}/like`,
+      {
+        method: "POST",
+      }
+    );
+    const data = await response.json();
+    return data;
+  } catch (error) {
+    console.error("좋아요 처리 실패:", error);
+    return null;
+  }
+}
+
+async function getProjectStats() {
+  try {
+    const response = await fetch(`${API_BASE_URL}/api/projects/stats`);
+    const data = await response.json();
+    return data;
+  } catch (error) {
+    console.error("통계 로드 실패:", error);
+    return null;
+  }
+}
+
 // ===== 프로젝트 슬라이더 기능 =====
 let currentSlideIndex = 0;
-const slideWidth = 344; // 카드 너비(320px) + 갭(24px)
+let projectsData = [];
 
 function slideProjects(direction) {
-  const slider = document.querySelector('.project-slider');
-  const cards = document.querySelectorAll('.project-card');
+  const slider = document.querySelector(".project-slider");
+  const cards = document.querySelectorAll(".project-card");
   const maxIndex = cards.length - 1;
-  
-  // 인덱스 업데이트
+
   currentSlideIndex += direction;
-  
-  // 경계 처리
+
   if (currentSlideIndex < 0) {
     currentSlideIndex = 0;
   } else if (currentSlideIndex > maxIndex) {
     currentSlideIndex = maxIndex;
   }
-  
-  // 슬라이드 이동
+
+  const slideWidth = 344;
   const translateX = currentSlideIndex * slideWidth;
   slider.scrollTo({
     left: translateX,
-    behavior: 'smooth'
+    behavior: "smooth",
   });
-  
-  // 화살표 버튼 상태 업데이트
+
   updateArrowButtons();
 }
 
 function updateArrowButtons() {
-  const prevBtn = document.querySelector('.nav-arrow.prev');
-  const nextBtn = document.querySelector('.nav-arrow.next');
-  const cards = document.querySelectorAll('.project-card');
+  const prevBtn = document.querySelector(".nav-arrow.prev");
+  const nextBtn = document.querySelector(".nav-arrow.next");
+  const cards = document.querySelectorAll(".project-card");
   const maxIndex = cards.length - 1;
-  
-  // 이전 버튼 상태
+
+  if (!prevBtn || !nextBtn) return;
+
   if (currentSlideIndex <= 0) {
-    prevBtn.style.opacity = '0.3';
-    prevBtn.style.cursor = 'not-allowed';
+    prevBtn.style.opacity = "0.3";
+    prevBtn.style.cursor = "not-allowed";
   } else {
-    prevBtn.style.opacity = '1';
-    prevBtn.style.cursor = 'pointer';
+    prevBtn.style.opacity = "1";
+    prevBtn.style.cursor = "pointer";
   }
-  
-  // 다음 버튼 상태
+
   if (currentSlideIndex >= maxIndex) {
-    nextBtn.style.opacity = '0.3';
-    nextBtn.style.cursor = 'not-allowed';
+    nextBtn.style.opacity = "0.3";
+    nextBtn.style.cursor = "not-allowed";
   } else {
-    nextBtn.style.opacity = '1';
-    nextBtn.style.cursor = 'pointer';
+    nextBtn.style.opacity = "1";
+    nextBtn.style.cursor = "pointer";
   }
 }
 
-// 슬라이더 초기화
-function initProjectSlider() {
-  // 초기 화살표 상태 설정
+// 동적 프로젝트 카드 생성 (원래 디자인 + 새로운 색상 팩레트)
+function renderProjectCards(projects) {
+  const slider = document.querySelector(".project-slider");
+  if (!slider) return;
+
+  projectsData = projects;
+  slider.innerHTML = "";
+
+  const projectStyles = {
+    1: {
+      className: "synto",
+      gradient: "linear-gradient(135deg, #9281CD 0%, #8C9ED9 100%)", // 보라색 계열
+      visual: '<div class="synto-character">🚀</div>',
+    },
+    2: {
+      className: "rrate",
+      gradient: "linear-gradient(135deg, #68C7C1 0%, #566A8E 100%)", // 청록-파랑 계열
+      visual: `
+        <div class="rrate-ui">
+          <div>프로젝트 포인트</div>
+        </div>
+      `,
+    },
+    3: {
+      className: "defai",
+      gradient: "linear-gradient(135deg, #D8634F 0%, #CC9473 100%)", // 주황-갈색 계열
+      visual: `
+        <div class="defai-ui">
+          <div>프로젝트 포인트</div>
+        </div>
+      `,
+    },
+    4: {
+      className: "portfolio",
+      gradient: "linear-gradient(135deg, #DCEAA2 0%, #E2E7E4 100%)", // 연한 초록-회색 계열
+      visual: `
+        <div class="portfolio-ui">
+          <div>프로젝트 포인트</div>
+        </div>
+      `,
+    },
+  };
+
+  projects.forEach((project, index) => {
+    const projectNum = project.project_number || index + 1;
+    const style = projectStyles[projectNum] || projectStyles[1];
+
+    const card = document.createElement("div");
+    card.className = `project-card modern-card ${style.className}`;
+    card.setAttribute("data-project-id", project.id);
+
+    // 새로운 색상 적용
+    card.style.background = style.gradient;
+
+    card.innerHTML = `
+      <!-- 프로젝트 태그 -->
+      <div class="project-tag">PROJECT NO.${projectNum}</div>
+      
+      <!-- 프로젝트 제목 -->
+      <h3 class="project-title">${project.title}</h3>
+      
+      <!-- 기술 스택 (제목 바로 밑으로 이동) -->
+      <div class="tech-stack-top">
+        ${project.tech_stack
+          .slice(0, 3)
+          .map(
+            (tech) => `
+          <span class="tech-tag">${tech}</span>
+        `
+          )
+          .join("")}
+      </div>
+      
+      <!-- 프로젝트 시각적 요소 -->
+      <div class="project-visual">
+        ${style.visual}
+      </div>
+      
+      <!-- GitHub/Demo 링크 (호버시 표시) -->
+      <div class="project-links">
+        ${
+          project.github_url
+            ? `
+          <a href="${project.github_url}" target="_blank" class="project-link">
+            <i class="fab fa-github"></i>
+          </a>
+        `
+            : ""
+        }
+        ${
+          project.demo_url
+            ? `
+          <a href="${project.demo_url}" target="_blank" class="project-link">
+            <i class="fas fa-external-link-alt"></i>
+          </a>
+        `
+            : ""
+        }
+      </div>
+      
+      <!-- 조회수/좋아요 (제일 밑으로 이동) -->
+      <div class="stats-bottom">
+        <div class="stat-group">
+          <i class="fas fa-eye"></i>
+          <span class="view-count">${project.view_count}</span>
+        </div>
+        <div class="stat-group like-btn" data-project-id="${project.id}">
+          <i class="fas fa-heart"></i>
+          <span class="like-count">${project.like_count}</span>
+        </div>
+      </div>
+    `;
+
+    slider.appendChild(card);
+
+    // 호버 효과: 링크 버튼 표시
+    card.addEventListener("mouseenter", () => {
+      const links = card.querySelector(".project-links");
+      if (links) links.style.opacity = "1";
+    });
+
+    card.addEventListener("mouseleave", () => {
+      const links = card.querySelector(".project-links");
+      if (links) links.style.opacity = "0";
+    });
+
+    // 카드 클릭 시 조회수 증가
+    card.addEventListener("click", async (e) => {
+      if (!e.target.closest("a") && !e.target.closest(".like-btn")) {
+        const result = await incrementView(project.id);
+        if (result && result.incremented) {
+          updateViewCount(project.id, result.view_count);
+          showModernMessage("프로젝트 조회됨! 🚀");
+        }
+      }
+    });
+  });
+
+  // 좋아요 버튼 이벤트 리스너 추가
+  addLikeButtonListeners();
+
+  // 화살표 버튼 상태 업데이트
   updateArrowButtons();
-  
-  // 슬라이더 스크롤 이벤트 리스너
-  const slider = document.querySelector('.project-slider');
+}
+
+// 좋아요 버튼 이벤트 리스너 (새로운 구조에 맞게 수정)
+function addLikeButtonListeners() {
+  const likeButtons = document.querySelectorAll(".stat-group.like-btn");
+
+  likeButtons.forEach((button) => {
+    button.addEventListener("click", async (e) => {
+      e.stopPropagation(); // 카드 클릭 이벤트 방지
+
+      const projectId = parseInt(button.getAttribute("data-project-id"));
+      const result = await toggleLike(projectId);
+
+      if (result) {
+        updateLikeButton(button, result.liked, result.like_count);
+        showModernMessage(result.message);
+      }
+    });
+  });
+}
+
+// 조회수 업데이트
+function updateViewCount(projectId, newCount) {
+  const card = document.querySelector(`[data-project-id="${projectId}"]`);
+  if (card) {
+    const viewCountElement = card.querySelector(".view-count");
+    if (viewCountElement) {
+      viewCountElement.textContent = newCount;
+    }
+  }
+}
+
+// 좋아요 버튼 업데이트 (새로운 구조에 맞게 수정)
+function updateLikeButton(button, liked, likeCount) {
+  const heartIcon = button.querySelector("i");
+  const countElement = button.querySelector(".like-count");
+
+  if (liked) {
+    heartIcon.style.color = "#D8634F";
+    button.style.animation = "heartBeat 0.5s ease";
+  } else {
+    heartIcon.style.color = "rgba(255, 255, 255, 0.9)";
+    button.style.animation = "";
+  }
+
+  countElement.textContent = likeCount;
+
+  setTimeout(() => {
+    button.style.animation = "";
+  }, 500);
+}
+
+// 현대적인 메시지 표시
+function showModernMessage(message) {
+  const existingMessage = document.querySelector(".modern-message");
+  if (existingMessage) {
+    existingMessage.remove();
+  }
+
+  const messageDiv = document.createElement("div");
+  messageDiv.className = "modern-message";
+  messageDiv.textContent = message;
+  messageDiv.style.cssText = `
+    position: fixed;
+    top: 20px;
+    right: 20px;
+    background: linear-gradient(135deg, #68C7C1 0%, #9281CD 100%);
+    color: white;
+    padding: 12px 20px;
+    border-radius: 20px;
+    z-index: 1000;
+    font-size: 0.9rem;
+    font-weight: 500;
+    animation: modernSlideIn 0.3s ease;
+    box-shadow: 0 8px 25px rgba(0, 0, 0, 0.15);
+    backdrop-filter: blur(10px);
+  `;
+
+  document.body.appendChild(messageDiv);
+
+  setTimeout(() => {
+    messageDiv.style.animation = "modernSlideOut 0.3s ease";
+    setTimeout(() => {
+      if (messageDiv.parentNode) {
+        messageDiv.remove();
+      }
+    }, 300);
+  }, 2500);
+}
+
+// 프로젝트 통계 표시
+async function displayProjectStats() {
+  const stats = await getProjectStats();
+  if (!stats) return;
+
+  updateStatsInFunSection(stats);
+  console.log("📊 프로젝트 통계:", stats);
+}
+
+// Fun 섹션 통계 업데이트
+function updateStatsInFunSection(stats) {
+  const statNumbers = document.querySelectorAll(".stat-number");
+
+  statNumbers.forEach((element) => {
+    const target = element.getAttribute("data-target");
+
+    if (target === "8") {
+      element.setAttribute("data-target", stats.total_projects);
+      element.textContent = stats.total_projects;
+    } else if (target === "150") {
+      element.setAttribute("data-target", stats.total_views);
+      element.textContent = stats.total_views;
+
+      const label = element.nextElementSibling;
+      if (label && label.classList.contains("stat-label")) {
+        label.textContent = "조회수";
+      }
+    }
+  });
+}
+
+// 슬라이더 초기화
+async function initProjectSlider() {
+  const projects = await fetchProjects();
+
+  if (projects.length > 0) {
+    renderProjectCards(projects);
+  } else {
+    console.log("프로젝트 데이터를 로드할 수 없습니다.");
+  }
+
+  const slider = document.querySelector(".project-slider");
   if (slider) {
-    slider.addEventListener('scroll', function() {
-      // 스크롤 위치에 따라 현재 인덱스 업데이트
+    slider.addEventListener("scroll", function () {
+      const slideWidth = 344;
       const scrollLeft = slider.scrollLeft;
       currentSlideIndex = Math.round(scrollLeft / slideWidth);
       updateArrowButtons();
@@ -70,17 +396,54 @@ function initProjectSlider() {
   }
 }
 
-// ===== URL 기반 네비게이션 =====
+// CSS 애니메이션 추가
+function addProjectStyles() {
+  const style = document.createElement("style");
+  style.textContent = `
+    @keyframes heartBeat {
+      0% { transform: scale(1); }
+      50% { transform: scale(1.2); }
+      100% { transform: scale(1); }
+    }
+    
+    @keyframes slideInRight {
+      from { transform: translateX(100%); opacity: 0; }
+      to { transform: translateX(0); opacity: 1; }
+    }
+    
+    @keyframes slideOutRight {
+      from { transform: translateX(0); opacity: 1; }
+      to { transform: translateX(100%); opacity: 0; }
+    }
+    
+    .loading-message {
+      text-align: center;
+      color: #ccc;
+      padding: 50px;
+      font-size: 1.1em;
+    }
+    
+    .like-btn:hover {
+      background: rgba(255, 255, 255, 0.1) !important;
+      color: #e74c3c !important;
+    }
+  `;
+
+  document.head.appendChild(style);
+}
+
+// ===== 기본 네비게이션 및 이벤트 =====
+
 function updateURL(sectionName) {
   if (sectionName) {
     window.location.hash = sectionName;
   } else {
-    window.location.hash = '';
+    window.location.hash = "";
   }
 }
 
 function getCurrentSection() {
-  return window.location.hash.replace('#', '') || null;
+  return window.location.hash.replace("#", "") || null;
 }
 
 function restorePageState() {
@@ -92,31 +455,25 @@ function restorePageState() {
   }
 }
 
-// ===== DOM 로드 완료 후 실행 =====
 document.addEventListener("DOMContentLoaded", function () {
-  console.log("🎨 Clean Portfolio 로드됨");
+  console.log("🎨 Portfolio 로드됨");
 
-  // 기능 초기화
+  addProjectStyles();
   initNavigation();
   initContactForm();
   initProjectSlider();
   animateStats();
   initAdvancedEffects();
-  
-  // URL 상태 복원
+  displayProjectStats();
   restorePageState();
-  
-  // 해시 변경 이벤트 리스너
-  window.addEventListener('hashchange', restorePageState);
+
+  window.addEventListener("hashchange", restorePageState);
 });
 
-// 고급 이팩트 초기화
 function initAdvancedEffects() {
-  // 터치 디바이스 지원
   const navButtons = document.querySelectorAll(".nav-button");
 
   navButtons.forEach(function (button) {
-    // 터치 이벤트 추가
     button.addEventListener("touchstart", function (e) {
       this.style.transform = "translateY(-2px) scale(0.98)";
     });
@@ -128,29 +485,19 @@ function initAdvancedEffects() {
     });
   });
 
-  // 페이지 로드 애니메이션
   setTimeout(function () {
     document.querySelector(".container").style.opacity = "1";
   }, 100);
 }
 
-// ===== 네비게이션 기능 =====
 function initNavigation() {
   const navButtons = document.querySelectorAll(".nav-button");
-  const sections = document.querySelectorAll(".content-section");
-  const mainContainer = document.querySelector(".container");
 
   navButtons.forEach(function (button) {
-    // 기본 클릭 이벤트
     button.addEventListener("click", function (e) {
       e.preventDefault();
-
-      // Ripple 효과 추가
       createRipple(e, this);
-
       const targetSection = this.getAttribute("data-section");
-
-      // 약간의 딜레이 후 섹션 전환
       setTimeout(function () {
         showSection(targetSection);
       }, 100);
@@ -158,7 +505,6 @@ function initNavigation() {
   });
 }
 
-// Ripple 효과 생성 함수
 function createRipple(event, element) {
   const button = element;
   const circle = document.createElement("span");
@@ -171,7 +517,6 @@ function createRipple(event, element) {
   circle.style.top = event.clientY - rect.top - radius + "px";
   circle.classList.add("ripple");
 
-  // 기존 ripple 제거
   const ripple = button.getElementsByClassName("ripple")[0];
   if (ripple) {
     ripple.remove();
@@ -179,7 +524,6 @@ function createRipple(event, element) {
 
   button.appendChild(circle);
 
-  // 0.6초 후 제거
   setTimeout(function () {
     if (circle.parentNode) {
       circle.remove();
@@ -192,18 +536,14 @@ function showSection(sectionName) {
   const targetSection = document.getElementById(sectionName);
   const allSections = document.querySelectorAll(".content-section");
 
-  // 메인 컨테이너 숨기기
   mainContainer.style.display = "none";
 
-  // 모든 섹션 숨기기
   allSections.forEach(function (section) {
     section.classList.remove("active");
   });
 
-  // 타겟 섹션 보이기
   if (targetSection) {
     targetSection.classList.add("active");
-    // URL 업데이트
     updateURL(sectionName);
   }
 }
@@ -212,26 +552,21 @@ function goHome() {
   const mainContainer = document.querySelector(".container");
   const allSections = document.querySelectorAll(".content-section");
 
-  // 모든 섹션 숨기기
   allSections.forEach(function (section) {
     section.classList.remove("active");
   });
 
-  // 메인 컨테이너 보이기
   mainContainer.style.display = "flex";
-  
-  // URL 업데이트
   updateURL();
 }
 
-// ===== 통계 카운터 애니메이션 =====
 function animateStats() {
   const statNumbers = document.querySelectorAll(".stat-number");
 
   statNumbers.forEach(function (stat) {
     const target = parseInt(stat.getAttribute("data-target"));
-    const duration = 2000; // 2초
-    const step = target / (duration / 16); // 60fps
+    const duration = 2000;
+    const step = target / (duration / 16);
     let current = 0;
 
     const timer = setInterval(function () {
@@ -247,7 +582,6 @@ function animateStats() {
   });
 }
 
-// ===== 연락처 폼 처리 =====
 function initContactForm() {
   const form = document.getElementById("contactForm");
   if (!form) return;
@@ -255,13 +589,11 @@ function initContactForm() {
   form.addEventListener("submit", function (e) {
     e.preventDefault();
 
-    // 폼 데이터 가져오기
     const formData = new FormData(form);
     const name = formData.get("name").trim();
     const email = formData.get("email").trim();
     const message = formData.get("message").trim();
 
-    // 간단한 유효성 검사
     if (!name) {
       alert("이름을 입력해주세요.");
       return;
@@ -277,7 +609,6 @@ function initContactForm() {
       return;
     }
 
-    // 전송 처리 시뮬레이션
     const submitBtn = form.querySelector('button[type="submit"]');
     const originalText = submitBtn.textContent;
 
@@ -294,59 +625,48 @@ function initContactForm() {
   });
 }
 
-// ===== 이메일 유효성 검사 =====
 function isValidEmail(email) {
   const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
   return emailRegex.test(email);
 }
 
-// ===== 키보드 단축키 =====
 document.addEventListener("keydown", function (e) {
-  // ESC: 홈으로 돌아가기
   if (e.key === "Escape") {
     goHome();
   }
 });
 
-// ===== 페이지 로드 완료 후 =====
 window.addEventListener("load", function () {
   console.log(
-    "%c✨ Clean Portfolio",
+    "%c✨ Portfolio",
     "color: #68C7C1; font-size: 16px; font-weight: bold;"
   );
   console.log(
-    "%c📚 HTML5 · CSS3 · JavaScript + Clean Effects",
+    "%c📚 HTML5 · CSS3 · JavaScript + FastAPI",
     "color: #9281CD; font-size: 12px;"
   );
-  console.log(
-    "%c🧽 Simple · Clean · Smooth",
-    "color: #566A8E; font-size: 12px;"
-  );
 
-  // 로딩 시간 측정
   const loadTime = performance.now();
   console.log(`⚡ 로딩 시간: ${Math.round(loadTime)}ms`);
 
-  // 깨끗한 디자인 메시지
-  console.log(
-    "%c🚀 깨끗하고 간단한 포트폴리오가 준비되었습니다!",
-    "color: #D8634F; font-size: 14px; font-weight: bold;"
-  );
+  fetch(`${API_BASE_URL}/api/health`)
+    .then((response) => response.json())
+    .then((data) => {
+      console.log("🚀 백엔드 연결 성공:", data.message);
+    })
+    .catch((error) => {
+      console.warn("⚠️ 백엔드 연결 실패:", error);
+    });
 });
 
-// ===== 에러 처리 =====
 window.addEventListener("error", function (e) {
   console.error("❌ 오류 발생:", e.message);
 });
 
-// ===== 유틸리티 함수들 =====
-
-// 현재 시간 반환
 function getCurrentTime() {
   return new Date().toLocaleTimeString("ko-KR");
 }
 
-// 요소가 화면에 보이는지 확인
 function isElementVisible(element) {
   const rect = element.getBoundingClientRect();
   return (
@@ -358,7 +678,7 @@ function isElementVisible(element) {
   );
 }
 
-// ===== 전역 함수 (HTML에서 호출 가능) =====
+// 전역 함수
 window.goHome = goHome;
 window.showSection = showSection;
 window.slideProjects = slideProjects;
