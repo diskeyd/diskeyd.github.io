@@ -5,7 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <meta
       name="description"
-      content="정보보안을 공부하는 대학생 포트폴리오. 웹 개발과 보안 기술을 겸비한 현대적 웹사이트."
+      content="정보보안을 공부하는 대학생 Diskeyd의 포트폴리오. 웹 개발과 보안 기술을 겸비한 현대적 웹사이트."
     />
     <meta
       name="keywords"
@@ -14,14 +14,18 @@
     <meta name="author" content="Diskeyd" />
     <title>Diskeyd Portfolio - 웹 개발 & 정보보안</title>
 
-    <!-- Font Awesome -->
+    <!-- Font Awesome (optional, with fallback) -->
     <link
       rel="stylesheet"
       href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css"
+      onerror="console.warn('Font Awesome 로드 실패 - 폴백 사용')"
     />
 
-    <!-- Feather Icons -->
-    <script src="https://unpkg.com/feather-icons"></script>
+    <!-- Feather Icons (optional, with fallback) -->
+    <script
+      src="https://unpkg.com/feather-icons"
+      onerror="console.warn('Feather Icons 로드 실패 - 폴백 사용')"
+    ></script>
 
     <!-- Custom CSS -->
     <link rel="stylesheet" href="css/style.css" />
@@ -123,8 +127,8 @@
         <h2>About Me</h2>
         <div class="content">
           <p>
-            안녕하세요! 정보보안을 공부하는
-            <strong>대학생</strong>입니다
+            안녕하세요! 정보보안을 공부하는 대학생
+            <strong>Diskeyd</strong>입니다
           </p>
           <p>
             코딩하다가 보안 취약점을 찾으면서 공부하고있습니다. 개발도 좋아하고
@@ -158,21 +162,8 @@
         <div class="content">
           <div class="project-slider-container">
             <div class="project-slider">
-              <div class="project-card synto">
-                <div class="project-tag">Project NO.1</div>
-              </div>
-
-              <div class="project-card rrate">
-                <div class="project-tag">Project NO.2</div>
-              </div>
-
-              <div class="project-card defai">
-                <div class="project-tag">Project NO.3</div>
-              </div>
-
-              <div class="project-card portfolio">
-                <div class="project-tag">Project NO.4</div>
-              </div>
+              <!-- 동적으로 생성될 프로젝트 카드들 -->
+              <div class="loading-message">프로젝트 로딩 중...</div>
             </div>
 
             <div class="slider-nav">
@@ -205,34 +196,21 @@
                 <svg class="category-icon" viewBox="0 0 24 24" fill="none">
                   <path
                     d="M12 2L3 7v10c0 5.55 3.84 9.95 9 11 5.16-1.05 9-5.45 9-11V7l-9-5z"
-                    stroke="#68c7c1"
+                    stroke="#e2e7e4"
                     stroke-width="2"
                     fill="none"
                   />
                   <path
                     d="m9 12 2 2 4-4"
-                    stroke="#68c7c1"
+                    stroke="#e2e7e4"
                     stroke-width="2"
                     fill="none"
                   />
                 </svg>
                 Frontend
               </h3>
+              <hr />
               <div class="skill-list">
-                <div class="skill-item">
-                  <svg class="skill-icon" viewBox="0 0 24 24" fill="none">
-                    <path
-                      d="M3 3h18v18H3V3zm16.525 13.707c-.131-.821-.666-1.511-2.252-2.155-.552-.259-1.165-.438-1.349-.854-.068-.248-.078-.382-.034-.529.114-.484.467-.635.81-.635.334 0 .653.135.908.434.041.048.103.112.157.184.797-.499.797-.499 1.35-.831-.209-.324-.448-.576-.693-.707-.656-.395-1.564-.477-2.501-.394-1.005.132-1.961.685-2.274 1.738-.406 1.268.132 2.075 1.135 2.728.016.008.034.024.037.033.78.44 1.573.708 2.138 1.215.563.508.563 1.268-.37 1.484-.588.108-1.259-.316-1.607-.789l-1.349.87c.92 1.449 2.83 1.449 4.760 1.042 1.105-.231 2.007-.869 2.007-2.081-.003-.63-.285-1.011-.732-1.353z"
-                      fill="#F7DF1E"
-                    />
-                    <path
-                      d="M15.209 13.685c.03-.199-.011-.363-.218-.363-.18 0-.289.084-.334.231-.063.207-.11.378-.11.674 0 .43.169.709.442.709.272 0 .398-.226.398-.709 0-.345-.059-.515-.178-.542z"
-                      fill="#000"
-                    />
-                  </svg>
-                  <span>JavaScript</span>
-                </div>
-
                 <div class="skill-item">
                   <svg class="skill-icon" viewBox="0 0 24 24" fill="none">
                     <path
@@ -240,7 +218,7 @@
                       fill="#E34F26"
                     />
                   </svg>
-                  <span>HTML5</span>
+                  <span>HTML</span>
                 </div>
 
                 <div class="skill-item">
@@ -250,7 +228,7 @@
                       fill="#1572B6"
                     />
                   </svg>
-                  <span>CSS3</span>
+                  <span>CSS</span>
                 </div>
 
                 <div class="skill-item">
@@ -270,13 +248,14 @@
                 <svg class="category-icon" viewBox="0 0 24 24" fill="none">
                   <path
                     d="M14.7 6.3a1 1 0 0 0 0 1.4l1.6 1.6a1 1 0 0 0 1.4 0l3.77-3.77a6 6 0 0 1-7.94 7.94l-6.91 6.91a2.12 2.12 0 0 1-3-3l6.91-6.91a6 6 0 0 1 7.94-7.94l-3.76 3.76z"
-                    stroke="#9281cd"
+                    stroke="#e2e7e4"
                     stroke-width="2"
                     fill="none"
                   />
                 </svg>
                 Tools
               </h3>
+              <hr />
               <div class="skill-list">
                 <div class="skill-item">
                   <svg class="skill-icon" viewBox="0 0 24 24" fill="none">
@@ -285,27 +264,17 @@
                       fill="#007ACC"
                     />
                   </svg>
-                  <span>VS Code</span>
+                  <span>VSCode</span>
                 </div>
 
                 <div class="skill-item">
                   <svg class="skill-icon" viewBox="0 0 24 24" fill="none">
                     <path
                       d="M12 0c-6.626 0-12 5.373-12 12 0 5.302 3.438 9.8 8.207 11.387.599.111.793-.261.793-.577v-2.234c-3.338.726-4.033-1.416-4.033-1.416-.546-1.387-1.333-1.756-1.333-1.756-1.089-.745.083-.729.083-.729 1.205.084 1.839 1.237 1.839 1.237 1.07 1.834 2.807 1.304 3.492.997.107-.775.418-1.305.762-1.604-2.665-.305-5.467-1.334-5.467-5.931 0-1.311.469-2.381 1.236-3.221-.124-.303-.535-1.524.117-3.176 0 0 1.008-.322 3.301 1.23.957-.266 1.983-.399 3.003-.404 1.02.005 2.047.138 3.006.404 2.291-1.552 3.297-1.23 3.297-1.23.653 1.653.242 2.874.118 3.176.77.84 1.235 1.911 1.235 3.221 0 4.609-2.807 5.624-5.479 5.921.43.372.823 1.102.823 2.222v3.293c0 .319.192.694.801.576 4.765-1.589 8.199-6.086 8.199-11.386 0-6.627-5.373-12-12-12z"
-                      fill="#181717"
+                      fill="#e2e7e4"
                     />
                   </svg>
                   <span>Git & GitHub</span>
-                </div>
-
-                <div class="skill-item">
-                  <svg class="skill-icon" viewBox="0 0 24 24" fill="none">
-                    <circle cx="12" cy="12" r="10" fill="#4285F4" />
-                    <circle cx="12" cy="12" r="7" fill="#EA4335" />
-                    <circle cx="12" cy="12" r="4" fill="#FBBC04" />
-                    <circle cx="12" cy="12" r="1" fill="#34A853" />
-                  </svg>
-                  <span>Chrome DevTools</span>
                 </div>
 
                 <div class="skill-item">
@@ -325,7 +294,7 @@
                 <svg class="category-icon" viewBox="0 0 24 24" fill="none">
                   <path
                     d="M22 10v6M2 10l10-5 10 5-10 5z"
-                    stroke="#566a8e"
+                    stroke="#e2e7e4"
                     stroke-width="2"
                     fill="none"
                   />
@@ -338,6 +307,7 @@
                 </svg>
                 Learning
               </h3>
+              <hr />
               <div class="skill-list">
                 <div class="skill-item">
                   <svg class="skill-icon" viewBox="0 0 24 24" fill="none">
@@ -348,16 +318,6 @@
                   </svg>
                   <span>Canvas API</span>
                 </div>
-
-                <div class="skill-item">
-                  <svg class="skill-icon" viewBox="0 0 24 24" fill="none">
-                    <path
-                      d="M12 0L1.608 6v12L12 24l10.392-6V6L12 0zm0 2.49L20.31 7.32l-8.31 4.81L3.69 7.32 12 2.49zm-9.22 6.05L11 13.72v8.59l-8.22-4.76V8.54zm18.44 0v8.01L13 22.31v-8.59l8.22-4.76z"
-                      fill="#61DAFB"
-                    />
-                  </svg>
-                  <span>React</span>
-                </div>
               </div>
             </div>
 
@@ -366,7 +326,7 @@
                 <svg class="category-icon" viewBox="0 0 24 24" fill="none">
                   <path
                     d="M4 6h16M4 12h16m-7 6h7"
-                    stroke="#dceaa2"
+                    stroke="#e2e7e4"
                     stroke-width="2"
                     fill="none"
                   />
@@ -381,6 +341,7 @@
                 </svg>
                 Backend
               </h3>
+              <hr />
             </div>
           </div>
         </div>
@@ -392,30 +353,7 @@
       <div class="section-container">
         <button class="back-btn" onclick="goHome()">← 홈으로</button>
         <h2>Fun</h2>
-        <div class="content">
-          <div class="fun-item">
-            <h3>📊 학습 통계</h3>
-            <div class="stats-container">
-              <div class="stat-item">
-                <span class="stat-number" data-target="8">0</span>
-                <span class="stat-label">프로젝트</span>
-              </div>
-              <div class="stat-item">
-                <span class="stat-number" data-target="6">0</span>
-                <span class="stat-label">기술</span>
-              </div>
-              <div class="stat-item">
-                <span class="stat-number" data-target="150">0</span>
-                <span class="stat-label">커밋</span>
-              </div>
-            </div>
-          </div>
-
-          <div class="fun-item">
-            <h3>🎨 취미</h3>
-            <p>코딩, 디자인, 새로운 기술 학습을 좋아합니다.</p>
-          </div>
-        </div>
+        <p>추후 기능 추가 예정</p>
       </div>
     </section>
 
@@ -478,8 +416,14 @@
 
     <!-- Initialize Feather Icons -->
     <script>
-      // Feather Icons 초기화
-      feather.replace();
+      // Feather Icons 초기화 (에러 처리 추가)
+      document.addEventListener("DOMContentLoaded", function () {
+        if (typeof feather !== "undefined") {
+          feather.replace();
+        } else {
+          console.warn("⚠️ Feather Icons 로드 실패 - 기본 아이콘 사용");
+        }
+      });
     </script>
   </body>
 </html>
