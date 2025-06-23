@@ -1,12 +1,11 @@
-// ===== API 설정 =====
-// FastAPI 백엔드 서버 주소 (수업에서 배운 API 통신)
+// API 설정
+// FastAPI 백엔드 서버 주소
 const API_BASE_URL = "http://localhost:4000";
 
-// ===== API 호출 함수들 =====
-// 비동기 처리를 위해 async/await 사용 (수업에서 배운 기법)
+// API 호출 함수들
+// 비동기 처리 사용
 async function fetchProjects() {
   try {
-    // Fetch API로 데이터 요청
     const response = await fetch(`${API_BASE_URL}/api/projects`);
     const data = await response.json();
     return data.projects || [];
@@ -59,7 +58,7 @@ async function getProjectStats() {
   }
 }
 
-// ===== 프로젝트 슬라이더 기능 =====
+// 프로젝트 슬라이더 기능
 let currentSlideIndex = 0;
 let projectsData = [];
 
@@ -111,7 +110,7 @@ function updateArrowButtons() {
   }
 }
 
-// 동적 프로젝트 카드 생성 (원래 디자인 + 새로운 색상 팩레트)
+// 동적 프로젝트 카드 생성
 function renderProjectCards(projects) {
   const slider = document.querySelector(".project-slider");
   if (!slider) return;
@@ -122,12 +121,12 @@ function renderProjectCards(projects) {
   const projectStyles = {
     1: {
       className: "synto",
-      gradient: "linear-gradient(135deg, #9281CD 0%, #8C9ED9 100%)", // 보라색 계열
+      gradient: "linear-gradient(135deg, #9281CD 0%, #8C9ED9 100%)",
       visual: '<div class="synto-character">🚀</div>',
     },
     2: {
       className: "rrate",
-      gradient: "linear-gradient(135deg, #68C7C1 0%, #566A8E 100%)", // 청록-파랑 계열
+      gradient: "linear-gradient(135deg, #68C7C1 0%, #566A8E 100%)",
       visual: `
         <div class="rrate-ui">
           <div>프로젝트 포인트</div>
@@ -136,7 +135,7 @@ function renderProjectCards(projects) {
     },
     3: {
       className: "defai",
-      gradient: "linear-gradient(135deg, #D8634F 0%, #CC9473 100%)", // 주황-갈색 계열
+      gradient: "linear-gradient(135deg, #D8634F 0%, #CC9473 100%)",
       visual: `
         <div class="defai-ui">
           <div>프로젝트 포인트</div>
@@ -145,7 +144,7 @@ function renderProjectCards(projects) {
     },
     4: {
       className: "portfolio",
-      gradient: "linear-gradient(135deg, #DCEAA2 0%, #E2E7E4 100%)", // 연한 초록-회색 계열
+      gradient: "linear-gradient(135deg, #DCEAA2 0%, #E2E7E4 100%)",
       visual: `
         <div class="portfolio-ui">
           <div>프로젝트 포인트</div>
@@ -162,56 +161,37 @@ function renderProjectCards(projects) {
     card.className = `project-card modern-card ${style.className}`;
     card.setAttribute("data-project-id", project.id);
 
-    // 새로운 색상 적용
+    // 색상 적용
     card.style.background = style.gradient;
 
     card.innerHTML = `
-      <!-- 프로젝트 태그 -->
       <div class="project-tag">PROJECT NO.${projectNum}</div>
-      
-      <!-- 프로젝트 제목 -->
       <h3 class="project-title">${project.title}</h3>
-      
-      <!-- 기술 스택 (제목 바로 밑으로 이동) -->
       <div class="tech-stack-top">
         ${project.tech_stack
           .slice(0, 3)
-          .map(
-            (tech) => `
-          <span class="tech-tag">${tech}</span>
-        `
-          )
+          .map((tech) => `<span class="tech-tag">${tech}</span>`)
           .join("")}
       </div>
-      
-      <!-- 프로젝트 시각적 요소 -->
       <div class="project-visual">
         ${style.visual}
       </div>
-      
-      <!-- GitHub/Demo 링크 (호버시 표시) -->
       <div class="project-links">
         ${
           project.github_url
-            ? `
-          <a href="${project.github_url}" target="_blank" class="project-link">
+            ? `<a href="${project.github_url}" target="_blank" class="project-link">
             <i class="fab fa-github"></i>
-          </a>
-        `
+          </a>`
             : ""
         }
         ${
           project.demo_url
-            ? `
-          <a href="${project.demo_url}" target="_blank" class="project-link">
+            ? `<a href="${project.demo_url}" target="_blank" class="project-link">
             <i class="fas fa-external-link-alt"></i>
-          </a>
-        `
+          </a>`
             : ""
         }
       </div>
-      
-      <!-- 조회수/좋아요 (제일 밑으로 이동) -->
       <div class="stats-bottom">
         <div class="stat-group">
           <i class="fas fa-eye"></i>
@@ -226,7 +206,7 @@ function renderProjectCards(projects) {
 
     slider.appendChild(card);
 
-    // 호버 효과: 링크 버튼 표시
+    // 호버 효과
     card.addEventListener("mouseenter", () => {
       const links = card.querySelector(".project-links");
       if (links) links.style.opacity = "1";
@@ -249,14 +229,14 @@ function renderProjectCards(projects) {
     });
   });
 
-  // 좋아요 버튼 이벤트 리스너 추가
+  // 좋아요 버튼 이벤트 추가
   addLikeButtonListeners();
 
   // 화살표 버튼 상태 업데이트
   updateArrowButtons();
 }
 
-// 좋아요 버튼 이벤트 리스너 (새로운 구조에 맞게 수정)
+// 좋아요 버튼 이벤트
 function addLikeButtonListeners() {
   const likeButtons = document.querySelectorAll(".stat-group.like-btn");
 
@@ -286,7 +266,7 @@ function updateViewCount(projectId, newCount) {
   }
 }
 
-// 좋아요 버튼 업데이트 (새로운 구조에 맞게 수정)
+// 좋아요 버튼 업데이트
 function updateLikeButton(button, liked, likeCount) {
   const heartIcon = button.querySelector("i");
   const countElement = button.querySelector(".like-count");
@@ -306,7 +286,7 @@ function updateLikeButton(button, liked, likeCount) {
   }, 500);
 }
 
-// 현대적인 메시지 표시
+// 메시지 표시
 function showModernMessage(message) {
   const existingMessage = document.querySelector(".modern-message");
   if (existingMessage) {
