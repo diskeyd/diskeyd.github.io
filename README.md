@@ -2,4 +2,4 @@
 
 ---
 
-참고 : [](https://www.toukoum.fr/)
+참고 : https://www.toukoum.fr/
