@@ -3,29 +3,18 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <meta
-      name="description"
-      content="정보보안을 공부하는 대학생 Diskeyd의 포트폴리오. 웹 개발과 보안 기술을 겸비한 현대적 웹사이트."
-    />
-    <meta
-      name="keywords"
-      content="포트폴리오, 웹개발, 정보보안, 프론트엔드, JavaScript, HTML, CSS"
-    />
+    <meta name="description" content="정보보안 전공 대학생의 웹 포트폴리오" />
     <meta name="author" content="Diskeyd" />
-    <title>Diskeyd Portfolio - 웹 개발 & 정보보안</title>
+    <title>Diskeyd Portfolio</title>
 
-    <!-- Font Awesome (optional, with fallback) -->
+    <!-- Font Awesome -->
     <link
       rel="stylesheet"
       href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css"
-      onerror="console.warn('Font Awesome 로드 실패 - 폴백 사용')"
     />
 
-    <!-- Feather Icons (optional, with fallback) -->
-    <script
-      src="https://unpkg.com/feather-icons"
-      onerror="console.warn('Feather Icons 로드 실패 - 폴백 사용')"
-    ></script>
+    <!-- Feather Icons -->
+    <script src="https://unpkg.com/feather-icons"></script>
 
     <!-- Custom CSS -->
     <link rel="stylesheet" href="css/style.css" />
@@ -101,7 +90,7 @@
           <div class="nav-icon skills-icon">
             <i data-feather="zap"></i>
           </div>
-          <span>Skills & Expertise</span>
+          <span>Skills</span>
         </a>
         <a href="#fun" class="nav-button" data-section="fun">
           <div class="nav-icon fun-icon">
@@ -123,27 +112,29 @@
     <!-- adout section -->
     <section id="about" class="content-section">
       <div class="section-container">
-        <button class="back-btn" onclick="goHome()">← Home</button>
-        <h2>About page</h2>
-        <div class="content"><p>추후 업데이트</p></div>
-        <div class="content"></div>
+        <button class="back-btn" onclick="goHome()">← 홈으로</button>
+        <h2>About</h2>
+        <div class="content">
+          <p>바로 아래 'Me' 섭션에서 자세한 내용을 보실 수 있습니다.</p>
+        </div>
+      </div>
     </section>
 
     <!-- Me Section -->
     <section id="me" class="content-section">
       <div class="section-container">
-        <button class="back-btn" onclick="goHome()">← Home</button>
-        <h2>About Me</h2>
+        <button class="back-btn" onclick="goHome()">← 홈으로</button>
+        <h2>내 소개</h2>
         <div class="content">
           <p>
-            안녕하세요! 정보보안을 공부하는 대학생
-            <strong>Diskeyd</strong>입니다
+            안녕하세요! 정보보안을 공부하고 있는 대학생
+            <strong>Diskeyd</strong>입니다.
           </p>
           <p>
-            코딩하다가 보안 취약점을 찾으면서 공부하고있습니다. 개발도 좋아하고
-            보안도 좋아해서 둘 다 잘해보고싶어서 노력하고있습니다.
+            코딩하다가 버그를 찾거나 보안 취약점을 찾으면서 이 분야에 관심을
+            가지게 됐어요.
           </p>
-          <p>이 페이지는 웹 포트폴리오 프로젝트 입니다.</p>
+          <p>웹 개발과 정보보안 둘 다 재미있어서 열심히 공부하고 있습니다.</p>
 
           <div class="info-grid">
             <div class="info-item">
@@ -166,8 +157,8 @@
     <!-- Projects Section -->
     <section id="projects" class="content-section">
       <div class="section-container">
-        <button class="back-btn" onclick="goHome()">← Home</button>
-        <h2>My Projects</h2>
+        <button class="back-btn" onclick="goHome()">← 홈으로</button>
+        <h2>내 프로젝트</h2>
         <div class="content">
           <div class="project-slider-container">
             <div class="project-slider">
@@ -196,8 +187,8 @@
     <!-- Skills Section -->
     <section id="skills" class="content-section">
       <div class="section-container">
-        <button class="back-btn" onclick="goHome()">← Home</button>
-        <h2>Skills & Expertise</h2>
+        <button class="back-btn" onclick="goHome()">← 홈으로</button>
+        <h2>내 기술들</h2>
         <div class="content">
           <div class="skills-grid">
             <div class="skill-category">
@@ -360,22 +351,19 @@
     <!-- Fun Section -->
     <section id="fun" class="content-section">
       <div class="section-container">
-        <button class="back-btn" onclick="goHome()">← Home</button>
-        <h2>Fun</h2>
-        <p>추후 기능 추가 예정</p>
+        <button class="back-btn" onclick="goHome()">← 홈으로</button>
+        <h2>재미있는 것들</h2>
+        <p>다양한 컨텐츠를 추가할 예정입니다.</p>
       </div>
     </section>
 
     <!-- Contact Section -->
     <section id="contact" class="content-section">
       <div class="section-container">
-        <button class="back-btn" onclick="goHome()">← Home</button>
-        <h2>Contact</h2>
+        <button class="back-btn" onclick="goHome()">← 홈으로</button>
+        <h2>연락처</h2>
         <div class="content">
-          <p>
-            새로운 프로젝트나 협업 기회에 관심이 있으시다면 언제든 연락해
-            주세요!
-          </p>
+          <p>언제든 연락 주세요!</p>
 
           <div class="contact-container">
             <div class="contact-info">
@@ -423,14 +411,11 @@
     <!-- JavaScript -->
     <script src="js/main.js"></script>
 
-    <!-- Initialize Feather Icons -->
     <script>
-      // Feather Icons 초기화 (에러 처리 추가)
+      // 아이콘 초기화
       document.addEventListener("DOMContentLoaded", function () {
         if (typeof feather !== "undefined") {
           feather.replace();
-        } else {
-          console.warn("⚠️ Feather Icons 로드 실패 - 기본 아이콘 사용");
         }
       });
     </script>
