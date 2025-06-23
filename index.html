@@ -1,0 +1,485 @@
+<!DOCTYPE html>
+<html lang="ko">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta
+      name="description"
+      content="정보보안을 공부하는 대학생 Diskeyd의 포트폴리오. 웹 개발과 보안 기술을 겸비한 현대적 웹사이트."
+    />
+    <meta
+      name="keywords"
+      content="포트폴리오, 웹개발, 정보보안, 프론트엔드, JavaScript, HTML, CSS"
+    />
+    <meta name="author" content="Diskeyd" />
+    <title>Diskeyd Portfolio - 웹 개발 & 정보보안</title>
+
+    <!-- Font Awesome -->
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css"
+    />
+
+    <!-- Feather Icons -->
+    <script src="https://unpkg.com/feather-icons"></script>
+
+    <!-- Custom CSS -->
+    <link rel="stylesheet" href="css/style.css" />
+  </head>
+  <body>
+    <!-- Left Social Icons -->
+    <div class="social-sidebar">
+      <a href="https://github.com/Diskeyd" target="_blank" class="social-icon">
+        <i class="fab fa-github"></i>
+      </a>
+      <a href="https://instagram.com/" target="_blank" class="social-icon">
+        <i class="fab fa-instagram"></i>
+      </a>
+      <a href="mailto:vectcy4879@gmail.com" class="social-icon">
+        <i class="fas fa-envelope"></i>
+      </a>
+      <a
+        href="https://regular-crib-cd9.notion.site/p-1bc9466433cf8032bf92ffedc81a5f83?source=copy_link"
+        target="_blank"
+        class="social-icon"
+      >
+        <svg
+          class="notion-icon"
+          width="24"
+          height="24"
+          viewBox="0 0 24 24"
+          fill="currentColor"
+        >
+          <path
+            d="M4.459 4.208c.746.606 1.026.56 2.428.466l13.215-.793c.28 0 .047-.28-.046-.326L17.86 1.968c-.42-.326-.981-.7-2.055-.607L3.01 2.295c-.466.046-.56.28-.374.466l1.823 1.447zm.793 3.08v13.904c0 .747.373 1.027 1.214.98l14.523-.84c.841-.046.935-.56.935-1.167V6.354c0-.606-.233-.933-.748-.887l-15.177.887c-.56.047-.747.327-.747.933zm14.337-.748c.093.42 0 .84-.42.888l-.7.14v10.264c-.608.327-1.168.514-1.635.514-.748 0-.935-.234-1.495-.933l-4.577-7.186v6.952L12.21 19s0 .84-1.168.84l-3.222.186c-.093-.186 0-.653.327-.746l.84-.233V9.854L7.822 9.76c-.094-.42.14-1.026.793-1.073l3.456-.233 4.764 7.279v-6.44l-1.215-.139c-.093-.514.28-.887.747-.933l3.269-.186z"
+          />
+        </svg>
+      </a>
+    </div>
+
+    <!-- Main Content -->
+    <div class="container">
+      <!-- Brand -->
+      <div class="brand">
+        <span class="brand-name">Diskeyd</span>
+      </div>
+
+      <!-- About Link -->
+      <div class="about-link">
+        <a href="#about" class="about-text">About Diskeyd</a>
+      </div>
+
+      <!-- Main Greeting -->
+      <div class="main-greeting">
+        <h1>Welcome, my Web portfolio</h1>
+      </div>
+
+      <!-- Subtitle -->
+      <div class="subtitle">
+        <p>웹 개발 포트폴리오</p>
+      </div>
+
+      <!-- Navigation Menu -->
+      <nav class="main-nav">
+        <a href="#me" class="nav-button" data-section="me">
+          <div class="nav-icon me-icon">
+            <i data-feather="user"></i>
+          </div>
+          <span>Me</span>
+        </a>
+        <a href="#projects" class="nav-button" data-section="projects">
+          <div class="nav-icon projects-icon">
+            <i data-feather="folder"></i>
+          </div>
+          <span>Projects</span>
+        </a>
+        <a href="#skills" class="nav-button" data-section="skills">
+          <div class="nav-icon skills-icon">
+            <i data-feather="zap"></i>
+          </div>
+          <span>Skills & Expertise</span>
+        </a>
+        <a href="#fun" class="nav-button" data-section="fun">
+          <div class="nav-icon fun-icon">
+            <i data-feather="star"></i>
+          </div>
+          <span>Fun</span>
+        </a>
+        <a href="#contact" class="nav-button" data-section="contact">
+          <div class="nav-icon contact-icon">
+            <i data-feather="mail"></i>
+          </div>
+          <span>Contact</span>
+        </a>
+      </nav>
+    </div>
+
+    <!-- Content Sections (Hidden by default) -->
+
+    <!-- Me Section -->
+    <section id="me" class="content-section">
+      <div class="section-container">
+        <button class="back-btn" onclick="goHome()">← 홈으로</button>
+        <h2>About Me</h2>
+        <div class="content">
+          <p>
+            안녕하세요! 정보보안을 공부하는 대학생
+            <strong>Diskeyd</strong>입니다
+          </p>
+          <p>
+            코딩하다가 보안 취약점을 찾으면서 공부하고있습니다. 개발도 좋아하고
+            보안도 좋아해서 둘 다 잘해보고싶어서 노력하고있습니다.
+          </p>
+          <p>이 페이지는 웹 포트폴리오 프로젝트 입니다.</p>
+
+          <div class="info-grid">
+            <div class="info-item">
+              <strong>위치</strong>
+              <span>광주, 대한민국</span>
+            </div>
+            <div class="info-item">
+              <strong>전공</strong>
+              <span>정보보안</span>
+            </div>
+            <div class="info-item">
+              <strong>상태</strong>
+              <span>학습 중 🚀</span>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Projects Section -->
+    <section id="projects" class="content-section">
+      <div class="section-container">
+        <button class="back-btn" onclick="goHome()">← 홈으로</button>
+        <h2>My Projects</h2>
+        <div class="content">
+          <div class="project-slider-container">
+            <div class="project-slider">
+              <div class="project-card synto">
+                <div class="project-tag">Project NO.1</div>
+              </div>
+
+              <div class="project-card rrate">
+                <div class="project-tag">Project NO.2</div>
+              </div>
+
+              <div class="project-card defai">
+                <div class="project-tag">Project NO.3</div>
+              </div>
+
+              <div class="project-card portfolio">
+                <div class="project-tag">Project NO.4</div>
+              </div>
+            </div>
+
+            <div class="slider-nav">
+              <button class="nav-arrow prev" onclick="slideProjects(-1)">
+                <i data-feather="chevron-left"></i>
+              </button>
+              <button class="nav-arrow next" onclick="slideProjects(1)">
+                <i data-feather="chevron-right"></i>
+              </button>
+            </div>
+          </div>
+
+          <div class="project-description">
+            <p>다양한 프로젝트를 통해 개발과 보안을 공부하고있습니다.</p>
+            <p>정보보안공부를하며 새로운 프로젝트를 구상하고있습니다.</p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Skills Section -->
+    <section id="skills" class="content-section">
+      <div class="section-container">
+        <button class="back-btn" onclick="goHome()">← 홈으로</button>
+        <h2>Skills & Expertise</h2>
+        <div class="content">
+          <div class="skills-grid">
+            <div class="skill-category">
+              <h3>
+                <svg class="category-icon" viewBox="0 0 24 24" fill="none">
+                  <path
+                    d="M12 2L3 7v10c0 5.55 3.84 9.95 9 11 5.16-1.05 9-5.45 9-11V7l-9-5z"
+                    stroke="#68c7c1"
+                    stroke-width="2"
+                    fill="none"
+                  />
+                  <path
+                    d="m9 12 2 2 4-4"
+                    stroke="#68c7c1"
+                    stroke-width="2"
+                    fill="none"
+                  />
+                </svg>
+                Frontend
+              </h3>
+              <div class="skill-list">
+                <div class="skill-item">
+                  <svg class="skill-icon" viewBox="0 0 24 24" fill="none">
+                    <path
+                      d="M3 3h18v18H3V3zm16.525 13.707c-.131-.821-.666-1.511-2.252-2.155-.552-.259-1.165-.438-1.349-.854-.068-.248-.078-.382-.034-.529.114-.484.467-.635.81-.635.334 0 .653.135.908.434.041.048.103.112.157.184.797-.499.797-.499 1.35-.831-.209-.324-.448-.576-.693-.707-.656-.395-1.564-.477-2.501-.394-1.005.132-1.961.685-2.274 1.738-.406 1.268.132 2.075 1.135 2.728.016.008.034.024.037.033.78.44 1.573.708 2.138 1.215.563.508.563 1.268-.37 1.484-.588.108-1.259-.316-1.607-.789l-1.349.87c.92 1.449 2.83 1.449 4.760 1.042 1.105-.231 2.007-.869 2.007-2.081-.003-.63-.285-1.011-.732-1.353z"
+                      fill="#F7DF1E"
+                    />
+                    <path
+                      d="M15.209 13.685c.03-.199-.011-.363-.218-.363-.18 0-.289.084-.334.231-.063.207-.11.378-.11.674 0 .43.169.709.442.709.272 0 .398-.226.398-.709 0-.345-.059-.515-.178-.542z"
+                      fill="#000"
+                    />
+                  </svg>
+                  <span>JavaScript</span>
+                </div>
+
+                <div class="skill-item">
+                  <svg class="skill-icon" viewBox="0 0 24 24" fill="none">
+                    <path
+                      d="M1.5 0h21l-1.91 21.563L11.977 24l-8.564-2.438L1.5 0zm7.031 9.75l-.232-2.718 10.059.003.23-2.622L5.412 4.41l.698 8.01h9.126l-.326 3.426-2.91.804-2.955-.81-.188-2.11H6.248l.33 4.171L12 19.351l5.379-1.443.744-8.157H8.531z"
+                      fill="#E34F26"
+                    />
+                  </svg>
+                  <span>HTML5</span>
+                </div>
+
+                <div class="skill-item">
+                  <svg class="skill-icon" viewBox="0 0 24 24" fill="none">
+                    <path
+                      d="M1.5 0h21l-1.91 21.563L11.977 24l-8.565-2.438L1.5 0zm17.09 4.413L5.41 4.41l.213 2.622 10.125.002-.255 2.716h-6.64l.24 2.573h6.182l-.366 3.523-2.91.804-2.956-.81-.188-2.11h-2.61l.29 3.855L12 19.288l5.373-1.53L18.59 4.414z"
+                      fill="#1572B6"
+                    />
+                  </svg>
+                  <span>CSS3</span>
+                </div>
+
+                <div class="skill-item">
+                  <svg class="skill-icon" viewBox="0 0 24 24" fill="none">
+                    <path
+                      d="M11.77 11.24H9.956V8.202h2.152c1.17 0 1.834.522 1.834 1.466 0 1.008-.773 1.572-2.174 1.572zm.324 1.206H9.956v3.348h2.174c1.465 0 2.244-.647 2.244-1.714 0-1.013-.730-1.634-2.244-1.634zM19.675 0H4.325C1.956 0 0 1.956 0 4.325v15.35C0 22.044 1.956 24 4.325 24h15.35C22.044 24 24 22.044 24 19.675V4.325C24 1.956 22.044 0 19.675 0zM16.435 16.324c0 3.046-1.86 4.504-5.65 4.504H8.31c-.817 0-1.197-.48-1.197-1.197V4.369c0-.717.38-1.197 1.197-1.197h2.475c3.790 0 5.65 1.458 5.65 4.504v8.648z"
+                      fill="#7952B3"
+                    />
+                  </svg>
+                  <span>Bootstrap</span>
+                </div>
+              </div>
+            </div>
+
+            <div class="skill-category">
+              <h3>
+                <svg class="category-icon" viewBox="0 0 24 24" fill="none">
+                  <path
+                    d="M14.7 6.3a1 1 0 0 0 0 1.4l1.6 1.6a1 1 0 0 0 1.4 0l3.77-3.77a6 6 0 0 1-7.94 7.94l-6.91 6.91a2.12 2.12 0 0 1-3-3l6.91-6.91a6 6 0 0 1 7.94-7.94l-3.76 3.76z"
+                    stroke="#9281cd"
+                    stroke-width="2"
+                    fill="none"
+                  />
+                </svg>
+                Tools
+              </h3>
+              <div class="skill-list">
+                <div class="skill-item">
+                  <svg class="skill-icon" viewBox="0 0 24 24" fill="none">
+                    <path
+                      d="M23.15 2.587L18.21.21a1.494 1.494 0 0 0-1.705.29l-9.46 8.63-4.12-3.128a.999.999 0 0 0-1.276.057L.327 7.261A1 1 0 0 0 .326 8.74L3.899 12 .326 15.26a1 1 0 0 0 .001 1.479L1.65 17.94a.999.999 0 0 0 1.276.057l4.12-3.128 9.46 8.63a1.492 1.492 0 0 0 1.704.29l4.942-2.377A1.5 1.5 0 0 0 24 20.06V3.939a1.5 1.5 0 0 0-.85-1.352z"
+                      fill="#007ACC"
+                    />
+                  </svg>
+                  <span>VS Code</span>
+                </div>
+
+                <div class="skill-item">
+                  <svg class="skill-icon" viewBox="0 0 24 24" fill="none">
+                    <path
+                      d="M12 0c-6.626 0-12 5.373-12 12 0 5.302 3.438 9.8 8.207 11.387.599.111.793-.261.793-.577v-2.234c-3.338.726-4.033-1.416-4.033-1.416-.546-1.387-1.333-1.756-1.333-1.756-1.089-.745.083-.729.083-.729 1.205.084 1.839 1.237 1.839 1.237 1.07 1.834 2.807 1.304 3.492.997.107-.775.418-1.305.762-1.604-2.665-.305-5.467-1.334-5.467-5.931 0-1.311.469-2.381 1.236-3.221-.124-.303-.535-1.524.117-3.176 0 0 1.008-.322 3.301 1.23.957-.266 1.983-.399 3.003-.404 1.02.005 2.047.138 3.006.404 2.291-1.552 3.297-1.23 3.297-1.23.653 1.653.242 2.874.118 3.176.77.84 1.235 1.911 1.235 3.221 0 4.609-2.807 5.624-5.479 5.921.43.372.823 1.102.823 2.222v3.293c0 .319.192.694.801.576 4.765-1.589 8.199-6.086 8.199-11.386 0-6.627-5.373-12-12-12z"
+                      fill="#181717"
+                    />
+                  </svg>
+                  <span>Git & GitHub</span>
+                </div>
+
+                <div class="skill-item">
+                  <svg class="skill-icon" viewBox="0 0 24 24" fill="none">
+                    <circle cx="12" cy="12" r="10" fill="#4285F4" />
+                    <circle cx="12" cy="12" r="7" fill="#EA4335" />
+                    <circle cx="12" cy="12" r="4" fill="#FBBC04" />
+                    <circle cx="12" cy="12" r="1" fill="#34A853" />
+                  </svg>
+                  <span>Chrome DevTools</span>
+                </div>
+
+                <div class="skill-item">
+                  <svg class="skill-icon" viewBox="0 0 24 24" fill="none">
+                    <path
+                      d="M15.852 8.981h-4.588V0h4.588c2.476 0 4.49 2.014 4.49 4.49s-2.014 4.491-4.49 4.491zM12.735 7.51h3.117c1.665 0 3.019-1.355 3.019-3.019s-1.355-3.019-3.019-3.019h-3.117V7.51zm0 1.471H8.148c-2.476 0-4.49-2.014-4.49-4.49S5.672 0 8.148 0h4.588v8.981zm-4.587-7.51c-1.665 0-3.019 1.355-3.019 3.019s1.355 3.019 3.019 3.019h3.117V1.471H8.148zm4.587 15.019H8.148c-2.476 0-4.49-2.014-4.49-4.49s2.014-4.49 4.49-4.49h4.588v8.98zM8.148 8.981c-1.665 0-3.019 1.355-3.019 3.019s1.355 3.019 3.019 3.019h3.117v-6.037H8.148zm7.704 0c2.476 0 4.49 2.014 4.49 4.49s-2.014 4.49-4.49 4.49-4.49-2.014-4.49-4.49 2.014-4.49 4.49-4.49zm0 1.471c-1.665 0-3.019 1.355-3.019 3.019s1.355 3.019 3.019 3.019 3.019-1.355 3.019-3.019-1.354-3.019-3.019-3.019zM8.148 24c-2.476 0-4.49-2.014-4.49-4.49s2.014-4.49 4.49-4.49 4.49 2.014 4.49 4.49S10.624 24 8.148 24zm0-1.471c1.665 0 3.019-1.355 3.019-3.019s-1.355-3.019-3.019-3.019-3.019 1.355-3.019 3.019 1.355 3.019 3.019 3.019z"
+                      fill="#F24E1E"
+                    />
+                  </svg>
+                  <span>Figma</span>
+                </div>
+              </div>
+            </div>
+
+            <div class="skill-category">
+              <h3>
+                <svg class="category-icon" viewBox="0 0 24 24" fill="none">
+                  <path
+                    d="M22 10v6M2 10l10-5 10 5-10 5z"
+                    stroke="#566a8e"
+                    stroke-width="2"
+                    fill="none"
+                  />
+                  <path
+                    d="m6 12 10 5 10-5"
+                    stroke="#566a8e"
+                    stroke-width="2"
+                    fill="none"
+                  />
+                </svg>
+                Learning
+              </h3>
+              <div class="skill-list">
+                <div class="skill-item">
+                  <svg class="skill-icon" viewBox="0 0 24 24" fill="none">
+                    <path
+                      d="M12 0C5.372 0 0 5.372 0 12s5.372 12 12 12 12-5.372 12-12S18.628 0 12 0zm5.568 7.178c-.044 1.4-.837 3.272-2.367 5.583-1.209 1.826-2.928 3.815-5.201 5.966-.273.258-.591.235-.735-.067-.24-.503-.511-1.2-.511-2.01 0-1.267.593-2.591 1.776-3.967 1.421-1.654 3.632-3.17 6.615-4.54.434-.199.727-.298.951-.298.127 0 .227.034.297.102.154.148.217.389.175.631z"
+                      fill="#FF6B35"
+                    />
+                  </svg>
+                  <span>Canvas API</span>
+                </div>
+
+                <div class="skill-item">
+                  <svg class="skill-icon" viewBox="0 0 24 24" fill="none">
+                    <path
+                      d="M12 0L1.608 6v12L12 24l10.392-6V6L12 0zm0 2.49L20.31 7.32l-8.31 4.81L3.69 7.32 12 2.49zm-9.22 6.05L11 13.72v8.59l-8.22-4.76V8.54zm18.44 0v8.01L13 22.31v-8.59l8.22-4.76z"
+                      fill="#61DAFB"
+                    />
+                  </svg>
+                  <span>React</span>
+                </div>
+              </div>
+            </div>
+
+            <div class="skill-category">
+              <h3>
+                <svg class="category-icon" viewBox="0 0 24 24" fill="none">
+                  <path
+                    d="M4 6h16M4 12h16m-7 6h7"
+                    stroke="#dceaa2"
+                    stroke-width="2"
+                    fill="none"
+                  />
+                  <circle
+                    cx="12"
+                    cy="12"
+                    r="3"
+                    stroke="#dceaa2"
+                    stroke-width="2"
+                    fill="none"
+                  />
+                </svg>
+                Backend
+              </h3>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Fun Section -->
+    <section id="fun" class="content-section">
+      <div class="section-container">
+        <button class="back-btn" onclick="goHome()">← 홈으로</button>
+        <h2>Fun</h2>
+        <div class="content">
+          <div class="fun-item">
+            <h3>📊 학습 통계</h3>
+            <div class="stats-container">
+              <div class="stat-item">
+                <span class="stat-number" data-target="8">0</span>
+                <span class="stat-label">프로젝트</span>
+              </div>
+              <div class="stat-item">
+                <span class="stat-number" data-target="6">0</span>
+                <span class="stat-label">기술</span>
+              </div>
+              <div class="stat-item">
+                <span class="stat-number" data-target="150">0</span>
+                <span class="stat-label">커밋</span>
+              </div>
+            </div>
+          </div>
+
+          <div class="fun-item">
+            <h3>🎨 취미</h3>
+            <p>코딩, 디자인, 새로운 기술 학습을 좋아합니다.</p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Contact Section -->
+    <section id="contact" class="content-section">
+      <div class="section-container">
+        <button class="back-btn" onclick="goHome()">← 홈으로</button>
+        <h2>Contact</h2>
+        <div class="content">
+          <p>
+            새로운 프로젝트나 협업 기회에 관심이 있으시다면 언제든 연락해
+            주세요!
+          </p>
+
+          <div class="contact-container">
+            <div class="contact-info">
+              <div class="contact-item">
+                <i class="fas fa-envelope"></i>
+                <a href="mailto:vectcy4879@gmail.com">vectcy4879@gmail.com</a>
+              </div>
+              <div class="contact-item">
+                <i class="fab fa-github"></i>
+                <a href="https://github.com/Diskeyd" target="_blank"
+                  >github.com/Diskeyd</a
+                >
+              </div>
+              <div class="contact-item">
+                <svg
+                  class="notion-icon-contact"
+                  width="20"
+                  height="20"
+                  viewBox="0 0 24 24"
+                  fill="currentColor"
+                >
+                  <path
+                    d="M4.459 4.208c.746.606 1.026.56 2.428.466l13.215-.793c.28 0 .047-.28-.046-.326L17.86 1.968c-.42-.326-.981-.7-2.055-.607L3.01 2.295c-.466.046-.56.28-.374.466l1.823 1.447zm.793 3.08v13.904c0 .747.373 1.027 1.214.98l14.523-.84c.841-.046.935-.56.935-1.167V6.354c0-.606-.233-.933-.748-.887l-15.177.887c-.56.047-.747.327-.747.933zm14.337-.748c.093.42 0 .84-.42.888l-.7.14v10.264c-.608.327-1.168.514-1.635.514-.748 0-.935-.234-1.495-.933l-4.577-7.186v6.952L12.21 19s0 .84-1.168.84l-3.222.186c-.093-.186 0-.653.327-.746l.84-.233V9.854L7.822 9.76c-.094-.42.14-1.026.793-1.073l3.456-.233 4.764 7.279v-6.44l-1.215-.139c-.093-.514.28-.887.747-.933l3.269-.186z"
+                  />
+                </svg>
+                <a
+                  href="https://regular-crib-cd9.notion.site/p-1bc9466433cf8032bf92ffedc81a5f83?source=copy_link"
+                  target="_blank"
+                  >Notion Portfolio</a
+                >
+              </div>
+            </div>
+
+            <form class="contact-form" id="contactForm">
+              <input type="text" name="name" placeholder="이름" required />
+              <input type="email" name="email" placeholder="이메일" required />
+              <textarea name="message" placeholder="메시지" required></textarea>
+              <button type="submit">메시지 보내기</button>
+            </form>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- JavaScript -->
+    <script src="js/main.js"></script>
+
+    <!-- Initialize Feather Icons -->
+    <script>
+      // Feather Icons 초기화
+      feather.replace();
+    </script>
+  </body>
+</html>
