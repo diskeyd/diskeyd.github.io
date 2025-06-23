@@ -10,7 +10,7 @@ import os
 from contextlib import asynccontextmanager
 
 
-# Pydantic 모델들
+# 데이터 모델
 class ProjectView(BaseModel):
     project_id: int
 
@@ -57,7 +57,7 @@ def init_db():
         )
     """)
 
-    # 샘플 프로젝트 데이터 삽입 (한 번만)
+    # 샘플 데이터 추가
     cursor.execute("SELECT COUNT(*) FROM projects")
     if cursor.fetchone()[0] == 0:
         sample_projects = [
@@ -162,7 +162,7 @@ async def serve_portfolio():
         )
 
 
-# ===== 프로젝트 API 엔드포인트들 =====
+# 프로젝트 API
 
 
 @app.get("/api/projects")
@@ -259,7 +259,7 @@ async def increment_project_view(project_id: int, request: Request):
             "incremented": incremented,
             "message": "조회수가 증가했습니다"
             if incremented
-            else "최근에 조회하신 프로젝트입니다.",
+            else "최근에 조회하신 프로젝트입니다",
         }
 
     except Exception as e:
