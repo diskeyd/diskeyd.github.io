@@ -18,6 +18,31 @@
 
     <!-- Custom CSS -->
     <link rel="stylesheet" href="css/style.css" />
+
+    <!-- Privacy link -->
+    <style>
+      .privacy-link {
+        position: fixed;
+        right: 24px;
+        bottom: 18px;
+        z-index: 50;
+        font-size: 0.78rem;
+        letter-spacing: 0.02em;
+        color: rgba(255, 255, 255, 0.35);
+        text-decoration: none;
+        transition: color 0.25s ease;
+      }
+      .privacy-link:hover {
+        color: rgba(255, 255, 255, 0.75);
+      }
+      @media (max-width: 600px) {
+        .privacy-link {
+          right: 16px;
+          bottom: 12px;
+          font-size: 0.72rem;
+        }
+      }
+    </style>
   </head>
   <body>
     <!-- Left Social Icons -->
@@ -419,5 +444,7 @@
         }
       });
     </script>
+
+    <a class="privacy-link" href="privacy.html">개인정보처리방침</a>
   </body>
 </html>
